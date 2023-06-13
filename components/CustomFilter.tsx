@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 
-const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
+const CustomFilter = <T,>({ options, setFilter }: CustomFilterProps<T>) => {
   const [selected, setSelected] = useState(options[0]);
 
   return (
@@ -16,7 +16,7 @@ const CustomFilter = ({ title, options, setFilter }: CustomFilterProps) => {
         value={selected}
         onChange={(e) => {
           setSelected(e);
-          setFilter(e.value);
+          setFilter(e.value as unknown as T);
         }}
       >
         <div className="relative w-fit z-10">
